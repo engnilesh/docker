@@ -1,0 +1,13 @@
+#!/bin/bash
+
+IFS=: read -r container_id path <<< $1
+
+base_name=$(basename $path)
+
+docker cp $1 /tmp/
+docker cp /tmp/$base_name $2
+
+if [ $? == 0 ]
+then
+    rm /tmp/$base_name
+fi

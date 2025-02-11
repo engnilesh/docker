@@ -1,0 +1,15 @@
+FROM ubuntu
+
+ENV HOME=/home/nilesh
+
+RUN mkdir -p ${HOME} \
+	&& mkdir -p ${HOME}/app
+
+# Add the entrypoint script
+COPY entrypoint.sh ${HOME}/entrypoint.sh
+RUN chmod +x ${HOME}/entrypoint.sh
+
+WORKDIR ${HOME}/app
+
+ENTRYPOINT ["/home/nilesh/entrypoint.sh"]
+CMD ["first"]
